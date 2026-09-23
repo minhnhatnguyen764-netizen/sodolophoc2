@@ -57,10 +57,10 @@ st.title("🏫 SƠ ĐỒ LỚP HỌC (45 THÀNH VIÊN)")
 st.caption(f"📅 Trạng thái: Đã tự động đổi chỗ **{so_lan_doi}** lần. (Hàng cuối lên bục giảng, các hàng khác lùi 1 bước)")
 st.write("---")
 
-    tab_sodo, tab_quanly = st.tabs(["🗺️ Hiển thị Sơ đồ Lớp", "⚙️ Quản lý & Chỉnh sửa"])
+tab_sodo, tab_quanly = st.tabs(["🗺️ Hiển thị Sơ đồ Lớp", "⚙️ Quản lý & Chỉnh sửa"])
 
 with tab_sodo:
-    st.markdown("BỤC GIẢNG / BÀN GIÁO VIÊN", unsafe_allow_html=True)
+    st.markdown("", unsafe_allow_html=True)
 
 def ve_cum_4_hoc_sinh(hs_day_a, hs_day_b, title):
     with st.container(border=True):
@@ -104,8 +104,7 @@ for h in range(1, 7):
         hs_d3 = hs_hang[hs_hang['Day_Doc'] == 3].to_dict('records')
         hs_d4 = hs_hang[hs_hang['Day_Doc'] == 4].to_dict('records')
         ve_cum_4_hoc_sinh(hs_d3, hs_d4, f"HÀNG {h} - CỤM PHẢI")
-with tab_quanly:
-mk = st.text_input("🔑 Nhập mật khẩu quản trị:", type="password")
+        mk = st.text_input("🔑 Nhập mật khẩu quản trị:", type="password")
 
 if mk == MAT_KHAU_QUAN_TRI:
     st.success("✅ Đã mở khóa chỉnh sửa!")
