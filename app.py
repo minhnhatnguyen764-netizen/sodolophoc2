@@ -63,7 +63,7 @@ with tab_sodo:
     st.markdown("BỤC GIẢNG / BÀN GIÁO VIÊN", unsafe_allow_html=True)
 
 def ve_cum_4_hoc_sinh(hs_day_a, hs_day_b, title):
-        with st.container(border=True):
+    with st.container(border=True):
         st.markdown(f"{title}", unsafe_allow_html=True)
 c1, c2, gap, c3, c4 = st.columns([1, 1, 0.3, 1, 1])
 def get_hs(hs_list, cho):
@@ -72,10 +72,10 @@ def get_hs(hs_list, cho):
                 return hs['Ten'], hs['Avatar_URL']
             return "Trống", "https://ui-avatars.com/api/?name=Trong&background=f0f0f0&color=a0a0a0"
 
-        t1, a1 = get_hs(hs_day_a, 1)
-        t2, a2 = get_hs(hs_day_a, 2)
-        t3, a3 = get_hs(hs_day_b, 1)
-        t4, a4 = get_hs(hs_day_b, 2)
+    t1, a1 = get_hs(hs_day_a, 1)
+    t2, a2 = get_hs(hs_day_a, 2)
+    t3, a3 = get_hs(hs_day_b, 1)
+    t4, a4 = get_hs(hs_day_b, 2)
 
         with c1:
             st.image(a1, use_container_width=True)
