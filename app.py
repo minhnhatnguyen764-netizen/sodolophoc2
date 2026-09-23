@@ -63,11 +63,11 @@ with tab_sodo:
     st.markdown("", unsafe_allow_html=True)
 
 def ve_cum_4_hoc_sinh(hs_day_a, hs_day_b, title):
-    with st.container(border=True):
-        st.markdown(f"{title}", unsafe_allow_html=True)
-c1, c2, gap, c3, c4 = st.columns([1, 1, 0.3, 1, 1])
+        with st.container(border=True):
+            st.subheader(title)
+            c1, c2, gap, c3, c4 = st.columns([1, 1, 0.3, 1, 1])
 
- def get_hs(hs_list, cho):
+        def get_hs(hs_list, cho):
             hs = next((x for x in hs_list if x['Cho_Ngoi'] == cho), None)
             if hs and hs['Ten'] != "Ghế Trống":
                 return hs['Ten'], hs['Avatar_URL']
