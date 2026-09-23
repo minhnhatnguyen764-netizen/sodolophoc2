@@ -74,9 +74,9 @@ def get_hs(hs_list, cho):
         
 
 t1, a1 = get_hs(hs_day_a, 1)
-        t2, a2 = get_hs(hs_day_a, 2)
-        t3, a3 = get_hs(hs_day_b, 1)
-        t4, a4 = get_hs(hs_day_b, 2)
+t2, a2 = get_hs(hs_day_a, 2)
+t3, a3 = get_hs(hs_day_b, 1)
+t4, a4 = get_hs(hs_day_b, 2)
         with c1:
             st.image(a1, use_container_width=True)
             st.caption(f"**{t1}**")
