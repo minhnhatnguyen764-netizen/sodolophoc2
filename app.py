@@ -57,7 +57,7 @@ st.title("🏫 SƠ ĐỒ LỚP HỌC (45 THÀNH VIÊN)")
 st.caption(f"📅 Trạng thái: Đã tự động đổi chỗ **{so_lan_doi}** lần. (Hàng cuối lên bục giảng, các hàng khác lùi 1 bước)")
 st.write("---")
 
-tab_sodo, tab_quanly = st.tabs(["🗺️ Hiển thị Sơ đồ Lớp", "⚙️ Quản lý & Chỉnh sửa"])
+    tab_sodo, tab_quanly = st.tabs(["🗺️ Hiển thị Sơ đồ Lớp", "⚙️ Quản lý & Chỉnh sửa"])
 
 with tab_sodo:
     st.markdown("BỤC GIẢNG / BÀN GIÁO VIÊN", unsafe_allow_html=True)
