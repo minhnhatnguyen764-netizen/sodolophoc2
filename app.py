@@ -9,6 +9,7 @@ MAT_KHAU_QUAN_TRI = "12A1HIEN"
 NGAY_BAT_DAU = datetime(2026, 9, 23)
 FILE_DATA = "danh_sach_lop.csv"
 FILE_BG = "bg_url.txt"
+bg_url = "https://i.postimg.cc/nh52Z3Ns/793089681-4483143295275332-798032956225024408-n.jpg"
 
 if os.path.exists(FILE_BG):
     with open(FILE_BG, "r") as f:
