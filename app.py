@@ -66,16 +66,17 @@ def ve_cum_4_hoc_sinh(hs_day_a, hs_day_b, title):
     with st.container(border=True):
         st.markdown(f"{title}", unsafe_allow_html=True)
 c1, c2, gap, c3, c4 = st.columns([1, 1, 0.3, 1, 1])
-def get_hs(hs_list, cho):
+
+        def get_hs(hs_list, cho):
             hs = next((x for x in hs_list if x['Cho_Ngoi'] == cho), None)
             if hs and hs['Ten'] != "Ghế Trống":
                 return hs['Ten'], hs['Avatar_URL']
             return "Trống", "https://ui-avatars.com/api/?name=Trong&background=f0f0f0&color=a0a0a0"
 
-     t1, a1 = get_hs(hs_day_a, 1)
-     t2, a2 = get_hs(hs_day_a, 2)
-     t3, a3 = get_hs(hs_day_b, 1)
-     t4, a4 = get_hs(hs_day_b, 2)
+        t1, a1 = get_hs(hs_day_a, 1)
+        t2, a2 = get_hs(hs_day_a, 2)
+        t3, a3 = get_hs(hs_day_b, 1)
+        t4, a4 = get_hs(hs_day_b, 2)
 
         with c1:
             st.image(a1, use_container_width=True)
@@ -122,9 +123,9 @@ if mk == MAT_KHAU_QUAN_TRI:
         df,
         column_config={
             "Ten": st.column_config.TextColumn("👤 Tên Học Sinh", width="medium"),
-            "Day_Doc": st.column_config.NumberColumn("🏢 Dãy dọc (1-4)"),
-            "Hang_Ngang": st.column_config.NumberColumn("🪑 Hàng/Bàn (1-6)"),
-            "Cho_Ngoi": st.column_config.NumberColumn("Vị trí (1=Trái, 2=Phải)"),
+            "Day_Doc": st.column_config.NumberColumn("🏢 Dãy dọc (1-4)", min_value=1, max_value=4),
+            "Hang_Ngang": st.column_config.NumberColumn("🪑 Hàng/Bàn (1-6)", min_value=1, max_value=6),
+            "Cho_Ngoi": st.column_config.NumberColumn("Vị trí (1=Trái, 2=Phải)", min_value=1, max_value=2),
             "Avatar_URL": st.column_config.TextColumn("🖼️ Link Avatar", width="large"),
         },
         hide_index=True, num_rows="fixed", height=600
