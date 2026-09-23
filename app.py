@@ -104,33 +104,34 @@ for h in range(1, 7):
         hs_d3 = hs_hang[hs_hang['Day_Doc'] == 3].to_dict('records')
         hs_d4 = hs_hang[hs_hang['Day_Doc'] == 4].to_dict('records')
         ve_cum_4_hoc_sinh(hs_d3, hs_d4, f"HÀNG {h} - CỤM PHẢI")
-        mk = st.text_input("🔑 Nhập mật khẩu quản trị:", type="password")
-
-if mk == MAT_KHAU_QUAN_TRI:
-    st.success("✅ Đã mở khóa chỉnh sửa!")
+        with tab_quanly:
+    mk = st.text_input("🔑 Nhập mật khẩu quản trị:", type="password")
     
-    st.subheader("🖼️ 1. Cài đặt Hình Nền Web")
-    link_bg_moi = st.text_input("Dán link ảnh nền:", value=bg_url)
-    if st.button("Lưu Hình Nền"):
-        with open(FILE_BG, "w") as f:
-            f.write(link_bg_moi)
-        st.success("Đã lưu ảnh nền! Hãy bấm F5 để xem thay đổi.")
+    if mk == MAT_KHAU_QUAN_TRI:
+        st.success("✅ Đã mở khóa chỉnh sửa!")
         
-    st.write("---")
-    st.subheader("👤 2. Chỉnh sửa Danh sách & Avatar Học sinh")
-    df_moi = st.data_editor(
-        df,
-        column_config={
-            "Ten": st.column_config.TextColumn("👤 Tên Học Sinh", width="medium"),
-            "Day_Doc": st.column_config.NumberColumn("🏢 Dãy dọc (1-4)", min_value=1, max_value=4),
-            "Hang_Ngang": st.column_config.NumberColumn("🪑 Hàng/Bàn (1-6)", min_value=1, max_value=6),
-            "Cho_Ngoi": st.column_config.NumberColumn("Vị trí (1=Trái, 2=Phải)", min_value=1, max_value=2),
-            "Avatar_URL": st.column_config.TextColumn("🖼️ Link Avatar", width="large"),
-        },
-        hide_index=True, num_rows="fixed", height=600
-    )
-    if st.button("💾 LƯU MỌI THAY ĐỔI VỀ HỌC SINH"):
-        df_moi.to_csv(FILE_DATA, index=False)
-        st.success("🎉 Đã lưu sơ đồ! Hãy bấm F5 để xem thay đổi.")
-elif mk != "":
-    st.error("❌ Sai mật khẩu!")
+        st.subheader("🖼️ 1. Cài đặt Hình Nền Web")
+        link_bg_moi = st.text_input("Dán link ảnh nền:", value=bg_url)
+        if st.button("Lưu Hình Nền"):
+            with open(FILE_BG, "w") as f:
+                f.write(link_bg_moi)
+            st.success("Đã lưu ảnh nền! Hãy bấm F5 để xem thay đổi.")
+            
+        st.write("---")
+        st.subheader("👤 2. Chỉnh sửa Danh sách & Avatar Học sinh")
+        df_moi = st.data_editor(
+            df,
+            column_config={
+                "Ten": st.column_config.TextColumn("👤 Tên Học Sinh", width="medium"),
+                "Day_Doc": st.column_config.NumberColumn("🏢 Dãy dọc (1-4)", min_value=1, max_value=4),
+                "Hang_Ngang": st.column_config.NumberColumn("🪑 Hàng/Bàn (1-6)", min_value=1, max_value=6),
+                "Cho_Ngoi": st.column_config.NumberColumn("Vị trí (1=Trái, 2=Phải)", min_value=1, max_value=2),
+                "Avatar_URL": st.column_config.TextColumn("🖼️ Link Avatar", width="large"),
+            },
+            hide_index=True, num_rows="fixed", height=600
+        )
+        if st.button("💾 LƯU MỌI THAY ĐỔI VỀ HỌC SINH"):
+            df_moi.to_csv(FILE_DATA, index=False)
+            st.success("🎉 Đã lưu sơ đồ! Hãy bấm F5 để xem thay đổi.")
+    elif mk != "":
+        st.error("❌ Sai mật khẩu!")
