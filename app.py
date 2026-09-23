@@ -22,7 +22,7 @@ def tao_du_lieu_mau():
                     avt = f"https://api.dicebear.com/7.x/avataaars/svg?seed={id_hs}"
                 else:
                     ten = "Ghế Trống"
-                    avt = "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
+                    avt = "https://ui-avatars.com/api/?name=Trong&background=f0f0f0&color=a0a0a0"
                 danh_sach.append({
                     "Ten": ten, "Day_Doc": day, "Hang_Ngang": hang,
                     "Cho_Ngoi": cho, "Avatar_URL": avt
@@ -68,7 +68,7 @@ def ve_cum_4_hoc_sinh(hs_day_a, hs_day_b, title):
             hs = next((x for x in hs_list if x['Cho_Ngoi'] == cho), None)
             if hs and hs['Ten'] != "Ghế Trống":
                 return hs['Ten'], hs['Avatar_URL']
-            return "Trống", "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
+            return "Trống", "https://ui-avatars.com/api/?name=Trong&background=f0f0f0&color=a0a0a0"
 
         t1, a1 = get_hs(hs_day_a, 1)
         t2, a2 = get_hs(hs_day_a, 2)
