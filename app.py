@@ -3,15 +3,13 @@ import pandas as pd
 from datetime import datetime
 import os
 
-# ================= 1. CẤU HÌNH TRANG VÀ BIẾN MẶC ĐỊNH =================
 st.set_page_config(page_title="Sơ Đồ Lớp Học", layout="wide", page_icon="🏫")
 
 MAT_KHAU_QUAN_TRI = "admin123"
 NGAY_BAT_DAU = datetime(2026, 9, 23)
 FILE_DATA = "danh_sach_lop.csv"
-FILE_BG = "bg_url.txt" # File mới để lưu link ảnh nền
+FILE_BG = "bg_url.txt"
 
-# ================= THÊM HÌNH NỀN (BACKGROUND) =================
 if os.path.exists(FILE_BG):
     with open(FILE_BG, "r") as f:
         bg_url = f.read().strip()
@@ -19,9 +17,10 @@ else:
     bg_url = ""
 
 if bg_url:
-    st.markdown(f"""""", unsafe_allow_html=True)
+    st.markdown(f"""
+    
+    """, unsafe_allow_html=True)
 
-# ================= 2. KHỞI TẠO DỮ LIỆU =================
 def tao_du_lieu_mau():
     danh_sach = []
     id_hs = 1
@@ -47,7 +46,6 @@ else:
     df = tao_du_lieu_mau()
     df.to_csv(FILE_DATA, index=False)
 
-# ================= 3. THUẬT TOÁN ĐỔI CHỖ =================
 hom_nay = datetime.now()
 so_lan_doi = (hom_nay - NGAY_BAT_DAU).days // 14
 df_hien_tai = df.copy()
@@ -55,23 +53,24 @@ df_hien_tai = df.copy()
 if so_lan_doi > 0:
     df_hien_tai['Hang_Ngang'] = (df_hien_tai['Hang_Ngang'] + so_lan_doi - 1) % 6 + 1
 
-# ================= 4. GIAO DIỆN WEB =================
 st.title("🏫 SƠ ĐỒ LỚP HỌC (45 THÀNH VIÊN)")
 st.caption(f"📅 Trạng thái: Đã tự động đổi chỗ **{so_lan_doi}** lần. (Hàng cuối lên bục giảng, các hàng khác lùi 1 bước)")
 st.write("---")
 
 tab_sodo, tab_quanly = st.tabs(["🗺️ Hiển thị Sơ đồ Lớp", "⚙️ Quản lý & Chỉnh sửa"])
 
-# ----------------- TAB 1: HIỂN THỊ SƠ ĐỒ -----------------
 with tab_sodo:
     st.markdown("BỤC GIẢNG / BÀN GIÁO VIÊN", unsafe_allow_html=True)
 
 def ve_cum_4_hoc_sinh(hs_day_a, hs_day_b, title):
     with st.container(border=True):
-        st.markdown(f"{title}", unsafe_allow_html=True)
+        st.markdown(f"
+{title}
+
+", unsafe_allow_html=True)
 c1, c2, gap, c3, c4 = st.columns([1, 1, 0.3, 1, 1])
 
-def get_hs(hs_list, cho):
+        def get_hs(hs_list, cho):
             hs = next((x for x in hs_list if x['Cho_Ngoi'] == cho), None)
             if hs and hs['Ten'] != "Ghế Trống":
                 return hs['Ten'], hs['Avatar_URL']
@@ -108,23 +107,20 @@ for h in range(1, 7):
         hs_d3 = hs_hang[hs_hang['Day_Doc'] == 3].to_dict('records')
         hs_d4 = hs_hang[hs_hang['Day_Doc'] == 4].to_dict('records')
         ve_cum_4_hoc_sinh(hs_d3, hs_d4, f"HÀNG {h} - CỤM PHẢI")
-# ----------------- TAB 2: QUẢN LÝ -----------------
 with tab_quanly:
 mk = st.text_input("🔑 Nhập mật khẩu quản trị:", type="password")
 
 if mk == MAT_KHAU_QUAN_TRI:
     st.success("✅ Đã mở khóa chỉnh sửa!")
     
-    # --- CHỨC NĂNG MỚI: ĐỔI ẢNH NỀN ---
     st.subheader("🖼️ 1. Cài đặt Hình Nền Web")
-    link_bg_moi = st.text_input("Dán link ảnh nền (Lấy link ngắn từ postimages.org):", value=bg_url)
+    link_bg_moi = st.text_input("Dán link ảnh nền:", value=bg_url)
     if st.button("Lưu Hình Nền"):
         with open(FILE_BG, "w") as f:
             f.write(link_bg_moi)
         st.success("Đã lưu ảnh nền! Hãy bấm F5 để xem thay đổi.")
         
     st.write("---")
-    # --- CHỨC NĂNG CŨ: ĐỔI SƠ ĐỒ ---
     st.subheader("👤 2. Chỉnh sửa Danh sách & Avatar Học sinh")
     df_moi = st.data_editor(
         df,
