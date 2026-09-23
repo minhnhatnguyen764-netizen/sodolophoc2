@@ -71,12 +71,10 @@ def get_hs(hs_list, cho):
             if hs and hs['Ten'] != "Ghế Trống":
                 return hs['Ten'], hs['Avatar_URL']
             return "Trống", "https://ui-avatars.com/api/?name=Trong&background=f0f0f0&color=a0a0a0"
-
         t1, a1 = get_hs(hs_day_a, 1)
         t2, a2 = get_hs(hs_day_a, 2)
         t3, a3 = get_hs(hs_day_b, 1)
         t4, a4 = get_hs(hs_day_b, 2)
-
         with c1:
             st.image(a1, use_container_width=True)
             st.caption(f"**{t1}**")
@@ -89,16 +87,13 @@ def get_hs(hs_list, cho):
         with c4:
             st.image(a4, use_container_width=True)
             st.caption(f"**{t4}**")
-
 for h in range(1, 7):
     col_trai, col_phai = st.columns(2)
     hs_hang = df_hien_tai[df_hien_tai['Hang_Ngang'] == h]
-    
     with col_trai:
         hs_d1 = hs_hang[hs_hang['Day_Doc'] == 1].to_dict('records')
         hs_d2 = hs_hang[hs_hang['Day_Doc'] == 2].to_dict('records')
         ve_cum_4_hoc_sinh(hs_d1, hs_d2, f"HÀNG {h} - CỤM TRÁI")
-        
     with col_phai:
         hs_d3 = hs_hang[hs_hang['Day_Doc'] == 3].to_dict('records')
         hs_d4 = hs_hang[hs_hang['Day_Doc'] == 4].to_dict('records')
