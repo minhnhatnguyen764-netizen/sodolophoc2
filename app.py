@@ -108,13 +108,12 @@ mk = st.text_input("🔑 Nhập mật khẩu quản trị:", type="password")
 
 if mk == MAT_KHAU_QUAN_TRI:
     st.success("✅ Đã mở khóa chỉnh sửa!")
-    
     st.subheader("🖼️ 1. Cài đặt Hình Nền Web")
-    link_bg_moi = st.text_input("Dán link ảnh nền:", value=bg_url)
+    link_bg_moi = st.text_input("Dán link ảnh nền mới (nếu muốn đổi):", value=bg_url)
     if st.button("Lưu Hình Nền"):
         with open(FILE_BG, "w") as f:
             f.write(link_bg_moi)
-        st.success("Đã lưu ảnh nền! Hãy bấm F5 để xem thay đổi.")
+        st.rerun() # Tự động làm mới trang web ngay lập tức
         
     st.write("---")
     st.subheader("👤 2. Chỉnh sửa Danh sách & Avatar Học sinh")
