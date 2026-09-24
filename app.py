@@ -5,10 +5,10 @@ import os
 
 st.set_page_config(page_title="Sơ Đồ Lớp Học", layout="wide", page_icon="🏫")
 
-MAT_KHAU_QUAN_TRI = "12A1HIEN"
+MAT_KHAU_QUAN_TRI = "admin123"
 NGAY_BAT_DAU = datetime(2026, 9, 23)
 FILE_DATA = "danh_sach_lop.csv"
-FILE_BG = "bg_url.jpg"
+FILE_BG = "bg_url.txt"
 
 if os.path.exists(FILE_BG):
     with open(FILE_BG, "r") as f:
@@ -60,12 +60,12 @@ st.write("---")
 tab_sodo, tab_quanly = st.tabs(["🗺️ Hiển thị Sơ đồ Lớp", "⚙️ Quản lý & Chỉnh sửa"])
 
 with tab_sodo:
-    st.markdown("", unsafe_allow_html=True)
+    st.markdown("BỤC GIẢNG / BÀN GIÁO VIÊN", unsafe_allow_html=True)
 
 def ve_cum_4_hoc_sinh(hs_day_a, hs_day_b, title):
-        with st.container(border=True):
-            st.subheader(title)
-            c1, c2, gap, c3, c4 = st.columns([1, 1, 0.3, 1, 1])
+    with st.container(border=True):
+        st.markdown(f"{title}", unsafe_allow_html=True)
+c1, c2, gap, c3, c4 = st.columns([1, 1, 0.3, 1, 1])
 
         def get_hs(hs_list, cho):
             hs = next((x for x in hs_list if x['Cho_Ngoi'] == cho), None)
@@ -104,16 +104,18 @@ for h in range(1, 7):
         hs_d3 = hs_hang[hs_hang['Day_Doc'] == 3].to_dict('records')
         hs_d4 = hs_hang[hs_hang['Day_Doc'] == 4].to_dict('records')
         ve_cum_4_hoc_sinh(hs_d3, hs_d4, f"HÀNG {h} - CỤM PHẢI")
+with tab_quanly:
 mk = st.text_input("🔑 Nhập mật khẩu quản trị:", type="password")
 
 if mk == MAT_KHAU_QUAN_TRI:
     st.success("✅ Đã mở khóa chỉnh sửa!")
+    
     st.subheader("🖼️ 1. Cài đặt Hình Nền Web")
-    link_bg_moi = st.text_input("Dán link ảnh nền mới (nếu muốn đổi):", value=bg_url)
+    link_bg_moi = st.text_input("Dán link ảnh nền:", value=bg_url)
     if st.button("Lưu Hình Nền"):
         with open(FILE_BG, "w") as f:
             f.write(link_bg_moi)
-        st.rerun() # Tự động làm mới trang web ngay lập tức
+        st.success("Đã lưu ảnh nền! Hãy bấm F5 để xem thay đổi.")
         
     st.write("---")
     st.subheader("👤 2. Chỉnh sửa Danh sách & Avatar Học sinh")
