@@ -5,7 +5,7 @@ import os
 
 st.set_page_config(page_title="Sơ Đồ Lớp Học", layout="wide", page_icon="🏫")
 
-MAT_KHAU_QUAN_TRI = "admin123"
+MAT_KHAU_QUAN_TRI = "12A1HIEN"
 NGAY_BAT_DAU = datetime(2026, 9, 23)
 FILE_DATA = "danh_sach_lop.csv"
 FILE_BG = "bg_url.txt"
