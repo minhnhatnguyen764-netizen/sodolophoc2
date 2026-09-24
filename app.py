@@ -104,7 +104,6 @@ for h in range(1, 7):
         hs_d3 = hs_hang[hs_hang['Day_Doc'] == 3].to_dict('records')
         hs_d4 = hs_hang[hs_hang['Day_Doc'] == 4].to_dict('records')
         ve_cum_4_hoc_sinh(hs_d3, hs_d4, f"HÀNG {h} - CỤM PHẢI")
-    with tab_quanly:
 mk = st.text_input("🔑 Nhập mật khẩu quản trị:", type="password")
 
 if mk == MAT_KHAU_QUAN_TRI:
